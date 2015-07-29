@@ -11,7 +11,7 @@
 	 - [**Including RUM classes in your project**](#importing-objects)
  - [**Using RUM Monitoring Classes**](#using-rum-classes)
 	 - [**Starting Passive Monitoring**](#starting-passive-monitoring)
-	 - [**Using Active Monitoring***](#using-active-monitoring)
+	 - [**Using Active Monitoring**](#using-active-monitoring)
 		 - [**Single shot profiling**](#single-shot-profiling)
 		 - [**Multi shot profiling**](#multi-shot-profiling)
 
@@ -82,6 +82,15 @@ RUM **Monitor** allows to watch over several page loading and resource monitorin
 ```javascript
 	Monitor.init(); 
 ```		
+
+#### Auto Generated Reports
+Pasive Monitor will generate the following reports
+
+- User Agent Report
+- Page Load Timing Report
+- Resources Load Timing Digest Report
+- User Activity Report
+
 
 ####*Sample server report output*
 ```json
