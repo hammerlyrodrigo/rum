@@ -30,8 +30,9 @@ Rum is a Javascript library that provides a set of tools for monitoring performa
 
 ### **Installation**
 
-    npm install https://github.com/hammerlyrodrigo/rum
-
+```shell
+	npm install rum-library
+```
 
 ### **Including RUM classes in your project**
 
