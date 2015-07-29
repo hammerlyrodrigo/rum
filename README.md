@@ -2,17 +2,17 @@
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
 ### Yet another **Real User Monitoring Library**
 ================================================
-<br>
+
 > ![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png) **UNDER BREWING NOTICE:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it
 > will not be possible to post the metrics to an external server on
 > current version.
-<br>
+
 
 ## Table of contents
 =====================
 
  - **An introduction to RUM**
- -  [**Getting Started**][#getting-started]
+ -  [**Getting Started**](#getting-started)
 	 - ***Installation***
 	 - ***Including RUM classes in your project***
  - **Using RUM Monitoring Classes**
@@ -21,8 +21,6 @@
 		 - *Single shot profiling*
 		 - *Multi shot profiling*
 
-
-<br>
 
 Real user monitoring (RUM) is a passive monitoring technology that records all user interaction with a website or client interacting with a server or cloud-based application.
 
