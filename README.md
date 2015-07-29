@@ -1,6 +1,6 @@
 
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
-### Yet another **Real User Monitoring Library**
+##### Yet another **Real User Monitoring Library**
 
 
 ## Table of contents
