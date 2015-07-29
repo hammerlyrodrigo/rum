@@ -20,10 +20,9 @@
 Real user monitoring (RUM) is a passive monitoring technology that records all user interaction with a website or client interacting with a server or cloud-based application.
 
 Rum is a Javascript library that provides a set of tools for monitoring performance and user activity in modern browsers through JavaScript [Performance Interface](https://developer.mozilla.org/en-US/docs/Web/API/Performance), it also allows to collect and send information to a remote server using a background process that can be configured to deliver the captured metrics on specific time intervals or manually. 
-
-> <img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png"/> &nbsp;&nbsp;**RUM UNDER BREWING:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it will not be possible to post the metrics to an external server on current version.
-
-> *Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
+<br>
+<br>
+> <img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png"/> &nbsp;&nbsp;**NOTICE: RUM IS UNDER BREWING!** this library is still **work in progress**, the report routing feature to external server is still under development, thus it will not be possible to post the metrics to an external server on current version. Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
 
 
 ## **Getting Started**
