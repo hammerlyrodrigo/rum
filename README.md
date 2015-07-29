@@ -5,15 +5,18 @@
 
 ## Table of contents
 
- - [**An introduction to RUM**](#an-introduction-to-rum)
- - [**Getting Started**](#getting-started)
-	 - [**Installation**](#installation)
-	 - [**Including RUM classes in your project**](#importing-objects)
- - [**Using RUM Monitoring Classes**](#using-rum-classes)
-	 - [**Starting Passive Monitoring**](#starting-passive-monitoring)
-	 - [**Using Active Monitoring**](#using-active-monitoring)
-		 - [**Single shot profiling**](#single-shot-profiling)
-		 - [**Multi shot profiling**](#multi-shot-profiling)
+ - [An introduction to RUM](#an-introduction-to-rum)
+ - [Getting Started](#getting-started)
+	 - [Installation](#installation)
+	 - [Including RUM classes in your project](#importing-objects)
+ - [Using RUM Monitoring Classes](#using-rum-classes)
+	 - [Starting Passive Monitoring](#starting-passive-monitoring)
+	 - [Using Active Monitoring](#using-active-monitoring)
+		 - [Single shot profiling](#single-shot-profiling)
+		 - [Multi shot profiling](#multi-shot-profiling)
+ - [Using Routing functionality](#using-routing-functionality)
+ 	- [Manual report delivery](#manual-report-delivery)
+ 	- [Configure automatic delivery options](#configure-automatic-delivery-options)
 
 
 ## **An introduction to RUM**
@@ -117,7 +120,7 @@ Pasive Monitor will generate the following reports
 ```		
 
 
-----------
+=====
 
 
 ### **Using Active Monitoring**		    
@@ -126,7 +129,7 @@ Pasive Monitor will generate the following reports
 In order to measure the performance of a specific execution path you will require to start a profiling session using the **Profiler**. A profiling report starts by calling `Profiler.start(<identifier>)` method, making sure that the identifier is unique for the current profiling session. After the operation being measured finishes you will need to call manually `Profiler.stop(<identifier>)`. Once a profiling operation is stopped it will be routed through the report queue for further delivery to remote server. 
 
 ```javascript
-        var someLongRunningFunction = function() {
+   var someLongRunningFunction = function() {
 	    Profiler.start('my-function-profile');
 	    //
 	    // a long code execution................
@@ -162,14 +165,32 @@ In certain situations it will be required to have more than a single execution p
     "name":"testDigest",
     "data":{
         "name":"testDigest",
-        "entries":2,
+        "entries":100,
         "median":13901.39349999663,
         "max":11733.0779999902,
         "min":16069.709000003058
     }
 }
 ```
+=====
 
+
+### **Using Routing functionality**
+Rum **Router** class provides a single access point for sending report content to the server by using a dedicated web worker dispatcher, it also provides a set of configuration options used by automatic routing feature.
+
+#### Manual report delivery
+In order to manually send to remote server the pending queue of reports call `Router.flush()` method.
+
+#### Configure automatic delivery options
+It is possible to change the default report delivery  flush interval using the `Router.flushInterval` property. It is also possible to disable the automatic flush by setting flush interval value to false.
+
+```javascript
+	Router.flushInterval = 60000;  //set flush interval to 1 minute
+	
+	Router.flushInterval = false;  //disable auto report delivery;
+	
+	Router.flush();                //force cached reports to be delivery to remote server immediately;
+```	
 
 
 
