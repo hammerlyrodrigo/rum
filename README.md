@@ -86,24 +86,24 @@ RUM **Monitor** allows to watch over several page loading and resource monitorin
 ####*Sample server report output*
 ```json
 {  
-        "name":"page-timing",
-        "data":{  
-            "source":{  
-                "title":"Tester",
-                "origin":"http://localhost:7000",
-                "protocol":"http:",
-                "pathname":"/"
-            },
-            "timing":{  
-                "connect":0,
-                "domainLookup":0,
-                "domContentLoadedEvent":49,
-                "loadEvent":81,
-                "redirect":0,
-                "response":1,
-                "unloadEvent":0
-            }
-        }
+	"name":"page-timing",
+	"data":{  
+	    "source":{  
+	        "title":"Tester",
+	        "origin":"http://localhost:7000",
+	        "protocol":"http:",
+	        "pathname":"/"
+	    },
+	    "timing":{  
+	        "connect":0,
+	        "domainLookup":0,
+	        "domContentLoadedEvent":49,
+	        "loadEvent":81,
+	        "redirect":0,
+	        "response":1,
+	        "unloadEvent":0
+	    }
+	}
 }
 ```		
 
@@ -117,21 +117,49 @@ RUM **Monitor** allows to watch over several page loading and resource monitorin
 In order to measure the performance of a specific execution path you will require to start a profiling session using the **Profiler**. A profiling report starts by calling `Profiler.start(<identifier>)` method, making sure that the identifier is unique for the current profiling session. After the operation being measured finishes you will need to call manually `Profiler.stop(<identifier>)`. Once a profiling operation is stopped it will be routed through the report queue for further delivery to remote server. 
 
 ```javascript
-        var somelongFunction = function() {
-		    Profiler.start('my-function-profile');
-		    //
-		    // a long code execution................
-		    //
-		    Profiler.stop('my-function-profile');
-	    }	
+        var someLongRunningFunction = function() {
+	    Profiler.start('my-function-profile');
+	    //
+	    // a long code execution................
+	    //
+	    Profiler.stop('my-function-profile');
+	}	
 ```		
 <br>
 #### Multi shot profiling
 In certain situations it will be required to have more than a single execution profile report in order to get a better statistic results, you can use
 
 
+```javascript
+	Profiler.createMulti('test');
+        var someLongRunningFunction = function() {
+	    Profiler.startMeasure('test');
+	    //
+	    // a long code execution with variable execution time
+	    //
+	    Profiler.stopMeasure('test');
+	}	
+	
+	for(let i=0; i < 100; i++) {
+		someLongRunningFunction();	
+	}
+	
+	Profiler.complteMulti('test');
+```	
 
-
+####*Sample server report output*
+```json
+{
+    "name":"testDigest",
+    "data":{
+        "name":"testDigest",
+        "entries":2,
+        "median":13901.39349999663,
+        "max":11733.0779999902,
+        "min":16069.709000003058
+    }
+}
+```
 
 
 
