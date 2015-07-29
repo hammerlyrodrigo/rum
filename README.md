@@ -2,7 +2,7 @@
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
 ### Yet another **Real User Monitoring Library**
 
-> ![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png=28x28) **RUM UNDER BREWING:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it will not be possible to post the metrics to an external server on current version.
+> ![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png) { float: right; width: 28px;} **RUM UNDER BREWING:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it will not be possible to post the metrics to an external server on current version.
 
 
 ## Table of contents
