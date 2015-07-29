@@ -1,23 +1,21 @@
 
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
 ### Yet another **Real User Monitoring Library**
-================================================
 
-> ![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png) **UNDER BREWING NOTICE:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it
+>![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png) **UNDER BREWING NOTICE:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it
 > will not be possible to post the metrics to an external server on
 > current version.
 
 
 ## Table of contents
-=====================
 
  - **An introduction to RUM**
  -  [**Getting Started**](#getting-started)
-	 - ***Installation***
-	 - ***Including RUM classes in your project***
- - **Using RUM Monitoring Classes**
-	 - ***Starting Passive Monitoring***
-	 - ***Using Active Monitoring***
+	 - [***Installation***](#installation)
+	 - [***Including RUM classes in your project***](#importing-objects)
+ - [**Using RUM Monitoring Classes**](#using-rum-classes)
+	 - [***Starting Passive Monitoring***](#starting-passive-monitoring)
+	 - [***Using Active Monitoring***](#using-active-monitoring)
 		 - *Single shot profiling*
 		 - *Multi shot profiling*
 
@@ -26,7 +24,6 @@ Real user monitoring (RUM) is a passive monitoring technology that records all u
 
 Rum is a Javascript library that provides a set of tools for monitoring performance and user activity in modern browsers through JavaScript [Performance Interface](https://developer.mozilla.org/en-US/docs/Web/API/Performance), it also allows to collect and send information to a remote server using a background process that can be configured to deliver the captured metrics on specific time intervals or manually. 
 
-<br>
 
 > *Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
 
