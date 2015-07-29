@@ -69,6 +69,10 @@ export default class Monitor {
         this._idleInterval = setInterval(idleHandler, this._idleInterval);
         this._idleHandler = idleHandler;
 
+        if (document.readyState === "complete")  {
+            this._crateLoadReport();
+        }
+
     }
 
     /**
@@ -95,16 +99,23 @@ export default class Monitor {
 
             break;
         case 'complete':
-            let page = new PageReport();
-            let agent = new AgentReport();
-            let resources = new ResourceDigest();
-
-            page.dispatch();
-            agent.dispatch();
-            resources.dispatch();
-
+                this._crateLoadReport();
             break;
         }
+    }
+
+    /**
+     * Creates a set of reports after page load process has been completed.
+     * @private
+     */
+    _crateLoadReport () {
+        let page = new PageReport();
+        let agent = new AgentReport();
+        let resources = new ResourceDigest();
+
+        page.dispatch();
+        agent.dispatch();
+        resources.dispatch();
     }
 
     /**

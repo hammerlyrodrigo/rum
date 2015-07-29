@@ -2,8 +2,5 @@
 logs
 *.log
 
-# Compiled binary
-build/
-
 # Dependency directory
 node_modules

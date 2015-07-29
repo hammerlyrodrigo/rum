@@ -19,7 +19,7 @@ let dispatcher = function () {
      * @return {Boolean}
      */
     let checkNetwork = function () {
-        return Math.random() < .5;
+        return Math.random() < .2;
     }
 
     /**
@@ -31,10 +31,13 @@ let dispatcher = function () {
      */
     let flushCache = function () {
         if (checkNetwork()) {
+            console.debug('MOCKUP CONNECTION AVAILABLE TRIGGERED');
+            self.postMessage('FLUSHING CACHE MOCKUP');
             console.debug(JSON.stringify(cache));
             cache = [];
             self.postMessage('CACHE_FLUSHED');
         } else {
+            console.debug('MOCKUP CONNECTION LOST TRIGGERED');
             self.postMessage('CACHE_FLUSH_ERROR');
         }
     }
@@ -145,7 +148,7 @@ export default class Router {
      * a valid network connection is available.
      */
     static flush() {
-        console.debug('MESSAGE CACHE WILL FLUSH');
+        console.info('MESSAGE CACHE WILL FLUSH');
         this.instance._flush();
     }
 
@@ -184,7 +187,7 @@ export default class Router {
      * @private
      */
     _flush() {
-        this.instance._worker.postMessage({
+        this._worker.postMessage({
             'cmd': 'flush'
         });
     }
