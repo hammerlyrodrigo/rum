@@ -1,17 +1,18 @@
 
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
 ### Yet another **Real User Monitoring Library**
-----------
-> ![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png) **RUM STILL UNDER DESTILLATION NOTICE:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it
+================================================
+<br>
+> ![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png) **UNDER BREWING NOTICE:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it
 > will not be possible to post the metrics to an external server on
 > current version.
 <br>
 
 ## Table of contents
--------------------------
+=====================
 
  - **An introduction to RUM**
- -  **Getting Started**
+ -  [**Getting Started**][#getting-started]
 	 - ***Installation***
 	 - ***Including RUM classes in your project***
  - **Using RUM Monitoring Classes**
