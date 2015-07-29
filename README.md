@@ -189,7 +189,7 @@ It is possible to change the default report delivery  flush interval using the `
 	
 	Router.flushInterval = false;  //disable auto report delivery;
 	
-	Router.flush();                //force cached reports to be delivery to remote server immediately;
+	Router.flush(); //force cached reports to be delivery to remote server immediately;
 ```	
 
 
