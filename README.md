@@ -7,13 +7,13 @@
 
  - [**An introduction to RUM**](#an-introduction-to-rum)
  - [**Getting Started**](#getting-started)
-	 - [***Installation***](#installation)
-	 - [***Including RUM classes in your project***](#importing-objects)
+	 - [**Installation**](#installation)
+	 - [**Including RUM classes in your project**](#importing-objects)
  - [**Using RUM Monitoring Classes**](#using-rum-classes)
-	 - [***Starting Passive Monitoring***](#starting-passive-monitoring)
-	 - [***Using Active Monitoring***](#using-active-monitoring)
-		 - [*Single shot profiling*](#single-shot-profiling)
-		 - [*Multi shot profiling*](#multi-shot-profiling)
+	 - [**Starting Passive Monitoring**](#starting-passive-monitoring)
+	 - [**Using Active Monitoring***](#using-active-monitoring)
+		 - [**Single shot profiling**](#single-shot-profiling)
+		 - [**Multi shot profiling**](#multi-shot-profiling)
 
 
 ## **An introduction to RUM**
