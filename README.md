@@ -1,16 +1,33 @@
 
-# ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/rum_64.png) **RUM**
+# ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
 ### Yet another **Real User Monitoring Library**
 ----------
-
-> **WIP NOTICE:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it
+> ![flask](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png) **RUM STILL UNDER DESTILLATION NOTICE:** this library is still **work in progress**, the report routing feature to external server is still under development, thus it
 > will not be possible to post the metrics to an external server on
 > current version.
+<br>
 
+## Table of contents
+-------------------------
+
+ - **An introduction to RUM**
+ -  **Getting Started**
+	 - ***Installation***
+	 - ***Including RUM classes in your project***
+ - **Using RUM Monitoring Classes**
+	 - ***Starting Passive Monitoring***
+	 - ***Using Active Monitoring***
+		 - *Single shot profiling*
+		 - *Multi shot profiling*
+
+
+<br>
 
 Real user monitoring (RUM) is a passive monitoring technology that records all user interaction with a website or client interacting with a server or cloud-based application.
 
 Rum is a Javascript library that provides a set of tools for monitoring performance and user activity in modern browsers through JavaScript [Performance Interface](https://developer.mozilla.org/en-US/docs/Web/API/Performance), it also allows to collect and send information to a remote server using a background process that can be configured to deliver the captured metrics on specific time intervals or manually. 
+
+<br>
 
 > *Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
 
@@ -52,8 +69,14 @@ You can include a link to rum.js on your index and initialize the library after 
 ```html
     <head>
 	    <script src="<path-to-rum>/rum.js" type="text/javascript"></script>
+	    <script type="text/javascript">
+	        window.onload = function() {
+	            Rum.Monitor.init();
+	        }
+	    </script>
     </head>
 ```
+
 
 For specific profiling you will need to call Rum.Profiler methods from your scripts.
 
@@ -65,6 +88,34 @@ RUM **Monitor** allows to watch over several page loading and resource monitorin
 ```javascript
 	Monitor.init(); 
 ```		
+
+####*Sample server report output*
+```json
+{  
+        "name":"page-timing",
+        "data":{  
+            "source":{  
+                "title":"Tester",
+                "origin":"http://localhost:7000",
+                "protocol":"http:",
+                "pathname":"/"
+            },
+            "timing":{  
+                "connect":0,
+                "domainLookup":0,
+                "domContentLoadedEvent":49,
+                "loadEvent":81,
+                "redirect":0,
+                "response":1,
+                "unloadEvent":0
+            }
+        }
+}
+```		
+
+
+----------
+
 
 ### **Using Active Monitoring**		    
 
@@ -80,9 +131,13 @@ In order to measure the performance of a specific execution path you will requir
 		    Profiler.stop('my-function-profile');
 	    }	
 ```		
-
+<br>
 #### Multi shot profiling
 In certain situations it will be required to have more than a single execution profile report in order to get a better statistic results, you can use
+
+
+
+
 
 
 
