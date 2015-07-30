@@ -6,12 +6,25 @@ var browserify = require('browserify'); // Bundles JS.
 var del = require('del'); // Deletes files.
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var uglify = require('gulp-uglify');
 
 // Define some paths.
 var paths = {
     app_js: ['./src/rum.js'],
     js: ['src/**/*.js']
 };
+
+var cfg = {
+    browserify: {
+        entries: paths.app_js,
+        extensions: ['.js'],
+        debug: true
+    },
+    babelify : {
+        stage: 0
+    }
+}
 
 // An example of a dependency task, it will be run before the js tasks.
 // Dependency tasks should call the callback to tell the parent task that
@@ -20,22 +33,34 @@ gulp.task('clean', function (done) {
     del(['build'], done);
 });
 
+gulp.task('clean-release', function (done) {
+    del(['build-release'], done);
+});
 
-// Our JS task. It will Browserify our code and compile React JSX files.
+
+// Our JS task. It will Browserify our code and compile files.
 gulp.task('build', ['clean'], function () {
     // Browserify/bundle the JS.
-    browserify({
-            entries: paths.app_js,
-            extensions: ['.js'],
-            debug: true
-        })
-        .transform(babelify.configure({
-            stage: 0
-        }))
+    browserify(cfg.browserify)
+        .transform(babelify.configure(cfg.babelify))
         .on('error', errorHandler)
         .bundle()
         .on('error', errorHandler)
         .pipe(source('../build/rum.js'))
+        .pipe(gulp.dest('./src/'));
+});
+
+// Our JS task. It will Browserify our code and compile files.
+gulp.task('build-release', ['clean-release'], function () {
+    // Browserify/bundle the JS.
+    browserify(cfg.browserify)
+        .transform(babelify.configure(cfg.babelify))
+        .on('error', errorHandler)
+        .bundle()
+        .on('error', errorHandler)
+        .pipe(source('../build/rum.min.js'))
+        .pipe(buffer())
+        .pipe(uglify())
         .pipe(gulp.dest('./src/'));
 });
 
