@@ -5,3 +5,19 @@ node_js:
 before_script:
   - npm install -g gulp
 script: gulp build
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "O/GB/gmpDpQdQpE0umGsGlW4ZGO3QhmZaGiHSKZEdP41NxUYMJzMT9cao83gnCyh7hlWJu4Ztisq/UF9uT17OQOF5VW6WKjb/QNQ6Dwc21ao3KqicTbvP2rTmX610NZKCgN2RjbqFCh5eGZeN8+w5JWL6TVZtxwmiNtl6B+MrtbUmbUBuJMR+Gt0j/I3Ev4F7bfr96+RDPjNSlaV4+T5/DhpRoJzkvXoihylLeOhbmzxRdiLO8RzUX5OP0aNHCAJz9vvE8Y5+S9lQPsMPM+xb04tfY8Xieyc4dTLXFXIeZeH5TaQjRrVHXPB60+Fo2/VodGDzEn04P2hmYynrWm+vdGMTAI1cJY/EBkV4/ALiwOoukqDncInC4s7wuqZbPzn2H3Exm/n4arDtKE6btZknRUGXp3avVO1RKcTH1vsJum+7MiJDs3pzE5il4Fx8zkxkyGdtsJ5OAKECWrrC7xYsVeL7CJv/S4dSGJQtZVHjQwIvNIeJA4S454fsa86IXdLOINekWP80LaM2cY424wscdQrsSFGjSmFDCTssr5NJP6ZmIBwFOXcj8C/pAK/bMtK7tebPqKpFzciFmn/jWcz2v1m+1yW3v/FSuVZXF19YE/SGsXDBqQaaHTSh57APKCjl//dpjQSbWA0x74NHHqa9/+RHCgpmYsBF83LUPt/VlE="
+
+addons:
+  coverity_scan:
+    project:
+      name: "hammerlyrodrigo/rum"
+      description: "A Real User Monitoring Library"
+    notification_email: hammerlyrodrigo@gmail.com
+    build_command_prepend: ""
+    build_command:   "gulp build"
+    branch_pattern: coverity_scan
