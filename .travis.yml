@@ -1,10 +1,6 @@
 language: node_js
 node_js:
   - "0.11"
-  - "0.10"
-before_script:
-  - npm install -g gulp
-script: gulp build
 
 env:
   global:
@@ -20,4 +16,9 @@ addons:
     notification_email: hammerlyrodrigo@gmail.com
     build_command_prepend: ""
     build_command:   "gulp build"
-    branch_pattern: coverity_scan
+    branch_pattern: master
+
+
+before_script:
+  - npm install -g gulp
+script: gulp build
