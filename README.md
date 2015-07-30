@@ -2,7 +2,7 @@
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
 ##### Yet another **Real User Monitoring Library**
 <br>
-* Build Status: <a href="https://travis-ci.org/hammerlyrodrigo/rum"><img src="<img title="Build Status Images" src="https://travis-ci.org/hammerlyrodrigo/rum.svg"/></a>
+* Build Status: <a href="https://travis-ci.org/hammerlyrodrigo/rum"><img title="Build Status Images" src="https://travis-ci.org/hammerlyrodrigo/rum.svg"/></a>
 <br>
 
 ## Table of contents
