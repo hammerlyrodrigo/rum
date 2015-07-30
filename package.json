@@ -1,6 +1,6 @@
 {
   "name": "rum-library",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Real User Monitoring Library",
   "main": "rum.js",
   "repository": {
