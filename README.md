@@ -25,7 +25,7 @@
 
 - ~~Create a release minified version~~ &nbsp; &nbsp; **(done)**
 - ~~Complete Router remote server post functionality~~ &nbsp; &nbsp;**(done)**
-- ~~Improve Router configuration options~~ &nbsp; &nbsp;(done)
+- ~~Improve Router configuration options~~ &nbsp; &nbsp; **(done)**
 - Add IndexedDB Support &nbsp; &nbsp;**(Now Brewing!)**
 - Add Error Reporting for passive Monitor
 - Add JSDoc generated documentation
@@ -44,7 +44,7 @@ specific time intervals or manually.
 <br>
 <br>
 
-> <img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png"/> &nbsp;&nbsp;**NOTICE: RUM IS UNDER BREWING!** this library is still **work in progress**, the report routing feature to external server is still under development, thus it will not be possible to post the metrics to an external server on current version. Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
+> <img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png"/> &nbsp;&nbsp;**NOTICE: RUM IS UNDER BREWING!** this library is still **work in progress**, the report routing feature to external server is still under development, ~~thus it will not be possible to post the metrics to an external server on current version~~ **(now working)**. Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
 
 <br>
 
