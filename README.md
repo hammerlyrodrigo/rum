@@ -26,7 +26,7 @@
 - ~~Create a release minified version~~ (done)
 - ~~Complete Router remote server post functionality~~
 - ~~Improve Router configuration options~~
-- Add IndexedDB Support <b style="color: #28C3AE;float: right;padding-left: 10px;"> Now Brewing!</b><img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/rum.png" style="height: 24px;float: right;">
+- Add IndexedDB Support  <b style="color: #28C3AE;float: right;padding-left: 10px;"> Now Brewing!</b>
 - Add Error Reporting for passive Monitor
 - Add JSDoc generated documentation
 - Include example site using RUM library
