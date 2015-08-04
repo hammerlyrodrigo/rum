@@ -23,10 +23,10 @@
 
 ## TODO LIST
 
-- ~~Create a release minified version~~ &nbsp; &nbsp;(done)
-- ~~Complete Router remote server post functionality~~ &nbsp; &nbsp;(done)
+- ~~Create a release minified version~~ &nbsp; &nbsp; **(done)**
+- ~~Complete Router remote server post functionality~~ &nbsp; &nbsp;**(done)**
 - ~~Improve Router configuration options~~ &nbsp; &nbsp;(done)
-- Add IndexedDB Support &nbsp; &nbsp;<b>(Now Brewing!)</b>
+- Add IndexedDB Support &nbsp; &nbsp;**(Now Brewing!)**
 - Add Error Reporting for passive Monitor
 - Add JSDoc generated documentation
 - Include example site using RUM library
