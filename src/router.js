@@ -4,75 +4,6 @@ let singleton = Symbol();
 let singletonEnforcer = Symbol();
 
 /**
- * Worker dispatcher functionality declaration.
- * This function is used as a script template for the code executed by the
- * Message Dispatcher Worker.
- */
-let dispatcher = function () {
-
-    let cache = [];
-
-    /**
-     * Returns true whenever a network connection is available
-     * Note: this method is a mockup testing method an return a random value
-     * instead making the proper checking
-     * @return {Boolean}
-     */
-    let checkNetwork = function () {
-        return Math.random() < .2;
-    }
-
-    /**
-     * Sends cache content trought the network and cleans its contents.
-     * Note: this method is a mockup testing method and only outputs the
-     * 		 information through the console.
-     * @fires CACHE_FLUSHED
-     * @fires CACHE_FLUSH_ERROR
-     */
-    let flushCache = function () {
-        if (checkNetwork()) {
-            console.debug('MOCKUP CONNECTION AVAILABLE TRIGGERED');
-            self.postMessage('FLUSHING CACHE MOCKUP');
-            console.debug(JSON.stringify(cache));
-            cache = [];
-            self.postMessage('CACHE_FLUSHED');
-        } else {
-            console.debug('MOCKUP CONNECTION LOST TRIGGERED');
-            self.postMessage('CACHE_FLUSH_ERROR');
-        }
-    }
-
-    /**
-     * Handles a message sent to the web worker from it's owner.
-     * @param  {Object} e Message Event object
-     */
-    let onMessage = function (e) {
-        var data = e.data;
-
-        switch (data.cmd) {
-        case 'start':
-            self.postMessage('DISPATCHER WORKER STARTED');
-            break;
-        case 'stop':
-            self.postMessage('DISPATCHER WORKER STOPPED');
-            flushCache();
-            self.close(); // Terminates the worker.
-            break;
-        case 'queue':
-            cache.push(e.data);
-            break;
-        case 'flush':
-            flushCache();
-            break;
-        };
-
-    };
-
-    self.addEventListener('message', onMessage, false);
-}.toString();
-
-
-/**
  * Router class provides a single access point for sending report content
  * to the server by using a dedicated web worker dispatcher.
  */
@@ -87,24 +18,21 @@ export default class Router {
      */
     constructor(enforcer) {
 
-        if (enforcer != singletonEnforcer) throw "Cannot construct singleton";
+        if (enforcer !== singletonEnforcer) {
+            throw "Cannot construct singleton";
+        }
 
         this._flushInterval = 20000; // 20 seconds
+        this._serverURL = 'http://localhost';
+        this._requestMethod = 'POST';
         this._flushHandler = this._flush.bind(this);
 
         this._flushInterval = setInterval(this._flushHandler, this._flushInterval);
 
-        // Create a string defining a closure and execute it.
-        dispatcher = '(' + dispatcher + ')()';
-
-        // Create a fake file using script string in order to provide worker
-        // with the code required to run.
-        let blob = new Blob([dispatcher], {
-            type: 'application/javascript'
-        });
-
-        // Create a worker using code stored in the blob file
-        this._worker = new Worker(URL.createObjectURL(blob));
+        // Create a worker dispatcher
+        // Note: the worker script will be inlined using workerify transform
+        // in order to keep all the solution into a single file
+        this._worker = new Worker('../../build/dispatcher.js');
 
         // Listen to worker notifications
         this._worker.onmessage = function (message) {
@@ -137,7 +65,7 @@ export default class Router {
      */
     static enqueue(data) {
         this.instance._worker.postMessage({
-            'cmd': 'queue',
+            'cmd': 'enqueue',
             'params': data
         });
         console.debug('MESSAGE SENT TO QUEUE', data);
@@ -162,15 +90,13 @@ export default class Router {
      *                          remote server.
      */
     static set flushInterval(interval) {
-        this.instance._flushInterval = interval;
-
-        clearInterval(this._flushInterval);
-
-        // If false sent no auto flush operation will be created
-        if(interval === false) return;
-
-        // set new auto flush operation interval
-        this._flushInterval = setInterval(this._flushHandler, this._flushInterval);
+        this.instance._flushInterval = interval; // get a local copy
+        this._worker.postMessage({
+            'cmd': 'set-flush-interval',
+            'params': {
+                'flushInterval': interval
+            }
+        });
     }
 
     /**
@@ -182,6 +108,54 @@ export default class Router {
     static get flushInterval() {
         return this.instance._flushInterval;
     }
+
+    /**
+     * Sets the remote server URL where the reports will be delivered when flush
+     * method is called
+     * @param  {String} url a valid server URL
+     */
+    static set serverURL(url) {
+        this.instance._serverURL = url; // get a local copy
+        this._worker.postMessage({
+            'cmd': 'set-url',
+            'params': {
+                'url': url
+            }
+        });
+    }
+
+    /**
+     * Returns the URL for current target remote server where the reports are
+     * delivered when flush operation is requested
+     * @return {String}
+     */
+    static get serverURL() {
+        return this.instance._serverURL;
+    }
+
+    /**
+     * Sets the Request method used to deliver the reports to remote server by
+     * default used method is POST
+     * @return {String}
+     */
+    static set requestMethod(method) {
+        this.instance._requestMethod = method; // get a local copy
+        this._worker.postMessage({
+            'cmd': 'set-method',
+            'params': {
+                'method': method
+            }
+        });
+    }
+
+    /**
+     * Returns the Request method used to deliver the reports to remote server
+     * @return {String}
+     */
+    static get requestMethod() {
+        return this.instance._serverURL;
+    }
+
 
     /**
      * @private

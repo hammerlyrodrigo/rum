@@ -20,16 +20,19 @@ export default class Util {
     static debounce(func, wait, immediate, scope) {
         var timeout;
         return function () {
-            var context = this,
-                args = arguments;
-            var later = function () {
+            let args = arguments;
+            let later = function () {
                 timeout = null;
-                if (!immediate) func.apply(scope, args);
+                if (!immediate) {
+                    func.apply(scope, args);
+                }
             };
             var callNow = immediate && !timeout;
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
-            if (callNow) func.apply(scope, args);
+            if (callNow) {
+                func.apply(scope, args);
+            }
         };
     }
 
@@ -43,13 +46,12 @@ export default class Util {
      */
     static addEventListener(target, name, callback, capture) {
         capture = capture || false;
-        if ("undefined" != typeof (target.attachEvent)) {
+        if ("undefined" !== typeof (target.attachEvent)) {
             return target.attachEvent("on" + name, callback);
         } else if (target.addEventListener) {
             return target.addEventListener(name, callback, capture);
         }
-    };
-
+    }
 
     /**
      * Returns the name of visibility change property on current user agent.
@@ -58,24 +60,36 @@ export default class Util {
         let hidden = "hidden";
 
         // Standards:
-        if (hidden in document)
+        if (hidden in document) {
             return "visibilitychange";
-        else if ((hidden = "mozHidden") in document)
+        }
+        if ((hidden = "mozHidden") in document) {
             return "mozvisibilitychange";
-        else if ((hidden = "webkitHidden") in document)
+        }
+        if ((hidden = "webkitHidden") in document) {
             return "webkitvisibilitychange";
-        else if ((hidden = "msHidden") in document)
+        }
+        if ((hidden = "msHidden") in document) {
             return "msvisibilitychange";
+        }
     }
 
     /**
      * Returns the name of document hidden property on current user agent.
      */
     static get HIDDEN_PROPERTY() {
-        if ('hidden' in document) return 'hidden';
-        if ('mozHidden' in document) return 'mozHidden';
-        if ('webkitHidden' in document) return 'webkitHidden';
-        if ('msHidden' in document) return 'msHidden';
+        if ('hidden' in document) {
+            return 'hidden';
+        }
+        if ('mozHidden' in document) {
+            return 'mozHidden';
+        }
+        if ('webkitHidden' in document) {
+            return 'webkitHidden';
+        }
+        if ('msHidden' in document) {
+            return 'msHidden';
+        }
     }
 
     /**
@@ -118,13 +132,21 @@ export default class Util {
     static copyObject(obj) {
         var newObj = {};
 
-        for (var key in obj) {
+        for (var key in obj) { // jshint ignore:line
             newObj[key] = obj[key];
         }
 
         return newObj;
     }
 
+    /**
+     * Calculates de the median value for a given set. Median is the number
+     * separating the higher half of a data sample, a population, or a
+     * probability distribution, from the lower half.
+     * @param  {Number[]} values A set containing a sample of numbers to be
+     * source of the calculation
+     * @return {Number}   The median calculation result.
+     */
     static median(values) {
 
         values.sort(function (a, b) {
@@ -133,10 +155,38 @@ export default class Util {
 
         var half = Math.floor(values.length / 2);
 
-        if (values.length % 2)
+        if (values.length % 2) {
             return values[half];
-        else
+        }
+        else {
             return (values[half - 1] + values[half]) / 2.0;
+        }
     }
 
+    /**
+     * Creates a web worker using a provided function model as source script
+     * allowing to create a Worker object without needing to use a diferent
+     * script file.
+     * @param  {Function} fn The source function that will be inlined
+     * @return {Worker}      a new web worker object using the provided function
+     *                       definition as source script.
+     */
+    static createInlineWorker(fn) {
+        if(typeof fn  !== 'function') {
+            throw 'A function is required to create an inline worker.';
+        }
+
+        let strFn = fn.toString();
+
+        // Create a string defining a closure and execute it.
+        strFn = '(' + strFn + ')()';
+
+        // Create a fake file using script string in order to provide worker
+        // with the code required to run.
+        let blob = new Blob([strFn], {
+            type: 'application/javascript'
+        });
+        
+        return new Worker(URL.createObjectURL(blob));
+    }
 }

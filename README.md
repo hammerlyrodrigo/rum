@@ -24,15 +24,16 @@
 ## TODO LIST
 
 - ~~Create a release minified version~~ (done)
+- ~~Complete Router remote server post functionality~~
+- ~~Improve Router configuration options~~
+- Add IndexedDB Support <b style="color: #28C3AE;float: right;padding-left: 10px;"> Now Brewing!</b><img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/rum.png" style="height: 24px;float: right;">
+- Add Error Reporting for passive Monitor
 - Add JSDoc generated documentation
-- Complete Router remote server post functionality
-- Improve Router configuration options
-- Add IndexedDB Support
 - Include example site using RUM library
 - Allow to configure automatic report fields
 - Auto send Multi Profile reports after a number certain number of measures or
 after a specific time.
-- Add Error Reporting for passive Monitor
+
 
 ## **An introduction to RUM**
 Real user monitoring (RUM) is a passive monitoring technology that records all user interaction with a website or client interacting with a server or cloud-based application.
