@@ -19,11 +19,12 @@
 		 - [Multi shot profiling](#multi-shot-profiling)
  - [Using Routing functionality](#using-routing-functionality)
  	- [Manual report delivery](#manual-report-delivery)
+    - [Configure server options](#configure-server-options)
  	- [Configure automatic delivery options](#configure-automatic-delivery-options)
 
 ## TODO LIST
 
-- ~~Create a release minified version~~ &nbsp; &nbsp; **(done)**
+- ~~Create a release minified version~~ &nbsp; &nbsp; **((done)**
 - ~~Complete Router remote server post functionality~~ &nbsp; &nbsp;**(done)**
 - ~~Improve Router configuration options~~ &nbsp; &nbsp; **(done)**
 - Add IndexedDB Support &nbsp; &nbsp;**(Now Brewing!)**
@@ -115,7 +116,7 @@ Pasive Monitor will generate the following reports
 - User Activity Report
 
 
-####*Sample server report output*
+#### *Sample server report output*
 ```json
 {  
 	"name":"page-timing",
@@ -179,7 +180,7 @@ for(let i=0; i < 100; i++) {
 Profiler.complteMulti('test');
 ```
 
-####*Sample server report output*
+#### *Sample server report output*
 ```json
 {
     "name":"testDigest",
@@ -199,6 +200,16 @@ Rum **Router** class provides a single access point for sending report content t
 
 #### Manual report delivery
 In order to manually send to remote server the pending queue of reports call `Router.flush()` method.
+
+#### Configure Server options
+It is requiered to set the following Router properties in order to customize the
+remote server address and request method
+
+```javascript
+Router.serverURL = 'http://myserver.com';  //set server URL and port if required
+
+Router.requestMethod = 'GET';  // default value is POST
+```
 
 #### Configure automatic delivery options
 It is possible to change the default report delivery  flush interval using the `Router.flushInterval` property. It is also possible to disable the automatic flush by setting flush interval value to false.
