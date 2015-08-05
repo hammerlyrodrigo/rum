@@ -234,7 +234,8 @@ Router.flush(); //force cached reports to be delivery
 
 #### 0.0.4
     + Bug fixes
-        - Fixed dispatcher configuration bug that prevented Router configuration  to work.
+        - Fixed dispatcher configuration bug that prevented Router
+          configuration  to work.
         - Fixed several JSLint code style issues
 
     + Documentation update
