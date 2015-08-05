@@ -1,6 +1,6 @@
 {
   "name": "rum-library",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Real User Monitoring Library",
   "main": "rum.js",
   "jshintConfing": ".jshintrc",
