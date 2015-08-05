@@ -1,6 +1,8 @@
 
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
 ##### Yet another **Real User Monitoring Library**
+
+[![Join the chat at https://gitter.im/hammerlyrodrigo/rum](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hammerlyrodrigo/rum?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <br>
 * Build Status: <a href="https://travis-ci.org/hammerlyrodrigo/rum"><img title="Build Status Images" src="https://travis-ci.org/hammerlyrodrigo/rum.svg"/></a>
 <br>
