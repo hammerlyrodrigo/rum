@@ -42,10 +42,17 @@ class Dispatcher {
      * Initializes dispatcher by setting the auto flushing operation using
      * current configuration
      */
-    start() {
+    start(config) {
         this._worker.postMessage('DISPATCHER WORKER STARTED');
         // Initialize the auto flush by setting default flush interval
-        this.flushInterval = this._config.flushInterval;
+        let cfg = this._config;
+
+        cfg.retryTimeout = config.retryTimeout || cfg.retryTimeout;
+        cfg.flushInterval = config.flushInterval || cfg.flushInterval;
+        cfg.url = config.url || cfg.url;
+        cfg.method = config.method || cfg.method;
+
+        this.flushInterval = cfg.flushInterval;
     }
 
     /**
@@ -78,7 +85,7 @@ class Dispatcher {
         this._config.flushInterval = parseInt(value);
         clearInterval(this._flushInterval);
 
-        if (this._config.flushInterval >= 0) {
+        if (this._config.flushInterval <= 0) {
             this._flushInterval = null;
         } else {
             this._flushInterval = setInterval(this._flushHandler, this._flushInterval);
@@ -140,7 +147,7 @@ class Dispatcher {
 
         switch (data.cmd) {
         case 'start':
-            this.start();
+            this.start(data.params);
             break;
         case 'stop':
             this.stop();
@@ -155,7 +162,7 @@ class Dispatcher {
             this.url = data.params.url;
             break;
         case 'set-method':
-                this.url = data.params.method;
+            this.url = data.params.method;
             break;
         case 'flush':
             this.flush();
@@ -172,25 +179,30 @@ class Dispatcher {
         this._worker.postMessage('FLUSHING CACHE');
 
         let xmlhttp = new XMLHttpRequest();
-        let me = this;
-
-
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState === XMLHttpRequest.DONE) {
-                if (xmlhttp.status === 200) {
-                    me._cache.clear();
-                    me._worker.postMessage('CACHE FLUSHED');
-                } else {
-                    me._worker.postMessage('REMOTE SERVER ERROR.');
-                    // if there was an error retry after a small time
-                    me._flushTimeout = setTimeout(me._flushHandler,
-                        me._config.retryTimeout);
-                }
-            }
-        };
+        xmlhttp.onreadystatechange = this._onReadyStateChange.bind(this,
+            xmlhttp);
 
         xmlhttp.open(this.method, this.url, true);
         xmlhttp.send();
+    }
+
+    /**
+     * Handles remote server deliver request statte change event
+     * @param  {XMLHttpRequest} xmlhttp A refernce to the relate request object
+     * @private
+     */
+    _onReadyStateChange(xmlhttp) {
+        if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+            if (xmlhttp.status === 200) {
+                this._cache.clear();
+                this._worker.postMessage('CACHE FLUSHED');
+            } else {
+                this._worker.postMessage('REMOTE SERVER ERROR.');
+                // if there was an error retry after a small time
+                this._flushTimeout = setTimeout(this._flushHandler,
+                    this._config.retryTimeout);
+            }
+        }
     }
 }
 

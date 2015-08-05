@@ -1,10 +1,14 @@
 
 # ![rum](https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/moonshine.png) **RUM**
+
 ##### Yet another **Real User Monitoring Library**
 <br>
 * Build Status: <a href="https://travis-ci.org/hammerlyrodrigo/rum"><img title="Build Status Images" src="https://travis-ci.org/hammerlyrodrigo/rum.svg"/></a>
+<a href="https://www.bithound.io/github/hammerlyrodrigo/rum/master"><img src="https://www.bithound.io/github/hammerlyrodrigo/rum/badges/score.svg" alt="bitHound Score"></a>
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hammerlyrodrigo/rum?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 <br>
-
+<br>
+[![NPM](https://nodei.co/npm/rum-library.png)](https://nodei.co/npm/rum-library/)
 ## Table of contents
 
  - [TODO LIST](#todo-list)
@@ -21,6 +25,7 @@
  	- [Manual report delivery](#manual-report-delivery)
     - [Configure server options](#configure-server-options)
  	- [Configure automatic delivery options](#configure-automatic-delivery-options)
+ - [Version Changes](#version-changes)
 
 ## TODO LIST
 
@@ -45,7 +50,7 @@ specific time intervals or manually.
 <br>
 <br>
 
-> <img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png"/> &nbsp;&nbsp;**NOTICE: RUM IS UNDER BREWING!** this library is still **work in progress**, the report routing feature to external server is still under development, ~~thus it will not be possible to post the metrics to an external server on current version~~ **(now working)**. Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
+> <img src="https://raw.githubusercontent.com/hammerlyrodrigo/rum/master/static/flask.png"/> &nbsp;&nbsp;**NOTICE: RUM IS UNDER BREWING!** this library is still **work in progress**, ~~the report routing feature to external server is still under development, thus it will not be possible to post the metrics to an external server on current version~~ **(now working)**. Although this library is in an early stage of development it will also allow to save the metrics information between session using [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) storage to provide a more comprehensive and powerful way of keeping information even after unexpected application crashes or failures.*
 
 <br>
 
@@ -222,3 +227,21 @@ Router.flushInterval = false;  //disable auto report delivery;
 Router.flush(); //force cached reports to be delivery
                 // to remote server immediately;
 ```
+
+
+
+## Version changes
+
+#### 0.0.4
+    + Bug fixes
+        - Fixed dispatcher configuration bug that prevented Router configuration  to work.
+        - Fixed several JSLint code style issues
+
+    + Documentation update
+
+#### 0.0.3  
+    + New Features
+        - Remote server report delivery functionality included
+        - New Router Configuration options
+
+    + Several code enhancements on dispatcher behavior

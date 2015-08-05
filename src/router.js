@@ -25,9 +25,7 @@ export default class Router {
         this._flushInterval = 20000; // 20 seconds
         this._serverURL = 'http://localhost';
         this._requestMethod = 'POST';
-        this._flushHandler = this._flush.bind(this);
-
-        this._flushInterval = setInterval(this._flushHandler, this._flushInterval);
+        this._flushInterval = 20000;
 
         // Create a worker dispatcher
         // Note: the worker script will be inlined using workerify transform
@@ -41,7 +39,12 @@ export default class Router {
 
         // Send init command to worker
         this._worker.postMessage({
-            'cmd': 'start'
+            'cmd': 'start',
+            'params': {
+                'flushInterval': this._flushInterval,
+                'url': this._serverURL,
+                'method': this._requestMethod,
+            }
         });
     }
 
@@ -91,7 +94,12 @@ export default class Router {
      */
     static set flushInterval(interval) {
         this.instance._flushInterval = interval; // get a local copy
-        this._worker.postMessage({
+
+        if (!this.instance._worker) {
+            return;
+        }
+
+        this.instance._worker.postMessage({
             'cmd': 'set-flush-interval',
             'params': {
                 'flushInterval': interval
@@ -116,7 +124,12 @@ export default class Router {
      */
     static set serverURL(url) {
         this.instance._serverURL = url; // get a local copy
-        this._worker.postMessage({
+
+        if (!this.instance._worker) {
+            return;
+        }
+
+        this.instance._worker.postMessage({
             'cmd': 'set-url',
             'params': {
                 'url': url
@@ -140,7 +153,12 @@ export default class Router {
      */
     static set requestMethod(method) {
         this.instance._requestMethod = method; // get a local copy
-        this._worker.postMessage({
+
+        if (!this.instance._worker) {
+            return;
+        }
+
+        this.instance._worker.postMessage({
             'cmd': 'set-method',
             'params': {
                 'method': method

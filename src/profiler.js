@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import Profile from './data/profile';
 import ProfileDigest from './data/digest';
@@ -18,7 +18,9 @@ let singletonEnforcer = Symbol();
 export default class Profiler {
 
     constructor(enforcer) {
-        if (enforcer != singletonEnforcer) throw "Cannot construct singleton";
+        if (enforcer !== singletonEnforcer) {
+            throw "Cannot construct singleton";
+        }
         this._profiles = new Map();
         this._digests = new Map();
     }
@@ -153,7 +155,9 @@ export default class Profiler {
      * @private
      */
     _startMeasure(identifier) {
-        if(!this._digests.has(identifier)) return false;
+        if(!this._digests.has(identifier)) {
+             return false;
+        }
         let digest = this._digests.get(identifier);
         digest.startMeasure();
 
@@ -164,7 +168,9 @@ export default class Profiler {
     * @private
     */
    _stopMeasure(identifier) {
-       if(!this._digests.has(identifier)) return false;
+       if(!this._digests.has(identifier)) {
+           return false;
+       }
        let digest = this._digests.get(identifier);
        digest.completeMeasure();
        return true;
