@@ -29,15 +29,15 @@
 
 ## TODO LIST
 
-- ~~Create a release minified version~~ &nbsp; &nbsp; **((done)**
-- ~~Complete Router remote server post functionality~~ &nbsp; &nbsp;**(done)**
-- ~~Improve Router configuration options~~ &nbsp; &nbsp; **(done)**
-- Add IndexedDB Support &nbsp; &nbsp;**(Now Brewing!)**
-- Add Error Reporting for passive Monitor
-- Add JSDoc generated documentation
-- Include example site using RUM library
-- Allow to configure automatic report fields
-- Auto send Multi Profile reports after a number certain number of measures or
+- [x] ~~Create a release minified version~~ &nbsp; &nbsp; **((done)**
+- [x] ~~Complete Router remote server post functionality~~ &nbsp; &nbsp;**(done)**
+- [x] ~~Improve Router configuration options~~ &nbsp; &nbsp; **(done)**
+- [ ] Add IndexedDB Support &nbsp; &nbsp;**(Now Brewing!)**
+- [ ] Add Error Reporting for passive Monitor
+- [ ] Add JSDoc generated documentation
+- [ ] Include example site using RUM library
+- [ ] Allow to configure automatic report fields
+- [ ] Auto send Multi Profile reports after a number certain number of measures or
 after a specific time.
 
 
