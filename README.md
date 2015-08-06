@@ -3,8 +3,8 @@
 
 ##### Yet another **Real User Monitoring Library**
 <br>
-* Build Status: <a href="https://travis-ci.org/hammerlyrodrigo/rum"><img title="Build Status Images" src="https://travis-ci.org/hammerlyrodrigo/rum.svg"/></a>
-<a href="https://www.bithound.io/github/hammerlyrodrigo/rum/master"><img src="https://www.bithound.io/github/hammerlyrodrigo/rum/badges/score.svg" alt="bitHound Score"></a>
+<a href="https://travis-ci.org/hammerlyrodrigo/rum"><img title="Build Status Images" src="https://travis-ci.org/hammerlyrodrigo/rum.svg"/></a>
+[![bitHound Score](https://www.bithound.io/github/hammerlyrodrigo/rum/badges/score.svg)](https://www.bithound.io/github/hammerlyrodrigo/rum/master)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hammerlyrodrigo/rum?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 <br>
 <br>
